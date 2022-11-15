@@ -27,7 +27,7 @@ pipeline {
             steps {
               withKubeConfig([credentialsId: "kubeconfig"]) {
                 sh "sed -i 's#replace#mohamedelasmar/numeric-app:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
-                sh 'docker push mohamedelasmar/numeric-app:""$GIT_COMMIT""'
+                sh "kubectl apply -f k8s_deployment_service.yaml"
             }
          }  
        }
