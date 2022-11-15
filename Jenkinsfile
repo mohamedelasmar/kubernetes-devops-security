@@ -25,7 +25,7 @@ pipeline {
     
     stage('K8 Deployment - DEV') {
             steps {
-              with KubeConfig([credentialsId: "kubeconfig"]) {
+              withKubeConfig([credentialsId: "kubeconfig"]) {
                 sh "sed -i 's#replace#mohamedelasmar/numeric-app:${GIT_COMMIT}#g' k8s_deployment_service.yaml"
                 sh 'docker push mohamedelasmar/numeric-app:""$GIT_COMMIT""'
             }
